@@ -182,3 +182,7 @@ npm install -g netlistsvg
 luego cerrar la terminal con el comando *exit*.
 
 Una vez instaladas las herramientas hay que modificar las rutas de acceso por defecto (PATH) para que sean fácilmente accesibles. Para ello en la configuración del sistema busca "entorno" y selecciona "Editar las variables de entorno del sistema". Selecciona "Variables de entorno..." en la hoja de propiedades. En el cuadro "Variables de usuario" selecciona Path con doble click. Al final de la lista añade las entradas `C:\msys64\ucrt64\bin` y `C:\msys64\usr\bin` en ese orden.
+
+## Agregados de Visual Studio Code
+
+Se recomienda utilizar como editor de texto Visual Studio Code. En Visual Studio Code instalar el agregado "VHDL LS", que encontrarás buscando `hbohlin.vhdl-ls` en la pestaña de agregados, que da soporte para el lenguaje VHDL. Además recomendamos "SVG Previewer", que encontrarás buscando `vitaliymaz.vscode-svg-previewer` en la solapa de extensiones, para visualizar los esquemáticos producidos en formato SVG.
