@@ -126,7 +126,7 @@ Listado 2: Archivo `src/sim_and_2.vhd`, con el banco de prueba para la entidad `
 
 ## Ejecución de las simulaciones
 
-Para ejecutar todas las simulaciones abrrir una teminal en el directorio del proyecto y ejecutar el comando `make`. Los resultados estarán disponibles en el subdirectorio `resultados`. Por ejemplo, las formas de onda creadas al ejecutar la simulación `sim_and_2` estarán en el archivo `resultados/and_2.ghw` (sin el prefijo sim_). Para ver las formas de onda utilizar el comando `gtkwave -f <archivo.ghw>` por ejemplo para ver el resultado de la simulación `sim_and_2` utilizar el comando `gtkwave -f resultados/and_2.ghw`
+Para ejecutar todas las simulaciones abrrir una teminal en el directorio del proyecto y ejecutar el comando `make`. Los resultados estarán disponibles en el subdirectorio `resultados`. Por ejemplo, las formas de onda creadas al ejecutar la simulación `sim_and_2` estarán en el archivo `resultados/and_2.ghw` (sin el prefijo sim_). Para ver las formas de onda utilizar el comando `gtkwave -f <archivo.ghw>` por ejemplo para ver el resultado de la simulación `sim_and_2` utilizar el comando `gtkwave -f resultados/and_2.ghw`. Ademas de ejecutar las simulaciones make genera un diagrama esquemático en formato de imagen vectorial `.svg`, también en la carpeta resultados. En el caso del componete `and_2` genera el archivo `resultados/and_2.svg`. Los archivos `.svg` pueden abrirse con un navegador. Puedes también previsualizarlo en visual studio code instalando alguna extensión. Recomendamos la extensión "SVG Previewer", que puedes ubicar buscando `vitaliymaz.vscode-svg-previewer` en la solapa de extensiónes.
 
 Para ejecutar solamente una simulación en particular usar `make <entidad>` donde `<entidad>` es el nombre de la entidad a simular (que coincide con el nombre del banco de prueba sin el prefijo `sim_`). Por ejemplo para ejecutar solamente la simulación `sim_and_2` utilizar el comando `make and_2`
 
@@ -134,7 +134,7 @@ Para eliminar todos los resultados de las simulaciones ejecutar el comando `make
 
 ## Instalación de las herramientas en Windows
 
-Utilizaremos la herramienta *ghdl* de análisis, compilación, simulación y síntesis para el lenguaje de descripción de hardware **VHDL**, el visor de formas de onda *gtkwave* y la utilidad *make* para automatización de tareas.
+Utilizaremos la herramienta *ghdl* de análisis, compilación, simulación y síntesis para el lenguaje de descripción de hardware **VHDL**, el visor de formas de onda *gtkwave*, la utilidad *make* para automatización de tareas, la herramienta de síntesis *yosys* y el programa *netlistsvg* para .
 
 En sistemas operativos windows utilizaremos la distribución de softeare *MSYS2* para instalar las herramientas necesarias. Descargar y ejecutar el instalador de *MSYS2* desde [https://www.msys2.org/](https://www.msys2.org/). Instalar en el directorio por defecto (`C:\msys64`). Luego de finalizada la instalación actualizar MSYS2. Para ello buscar en el menú inicio y ejecutar *MSYS2 64bit -> MSYS2 MSYS*. En la consola que se abre ejecutar el comando
 
@@ -166,9 +166,19 @@ Una vez actualizado, ejecutar los comandos
 
 ~~~shell
 pacman -S mingw-w64-ucrt-x86_64-ghdl-llvm --noconfirm
-pacman -S make mingw-w64-ucrt-x86_64-gtkwave --noconfirm 
+pacman -S make mingw-w64-ucrt-x86_64-gtkwave --noconfirm
+pacman -S mingw-w64-ucrt-x86_64-yosys --noconfirm 
+pacman -S mingw-w64-ucrt-x86_64-nodejs --noconfirm
 ~~~
 
-para instalar ghdl, make y gtkwave. Luego cerrar la terminal de MSYS2 con el comando `exit`.
+para instalar ghdl, make, gtkwave, yosys y nodejs (necesario para netlistsvg). Luego cerrar la terminal de MSYS2 con el comando `exit`.
+
+Abrir la terminal *MSYS UCRT* desde el menú inicio *MSYS2 64bit -> MSYS2 UCRT* y ejecutar el siguiente comando para instalar *netlistsvg* en *nodejs*
+
+~~~shell
+npm install -g netlistsvg
+~~~
+
+luego cerrar la terminal con el comando *exit*.
 
 Una vez instaladas las herramientas hay que modificar las rutas de acceso por defecto (PATH) para que sean fácilmente accesibles. Para ello en la configuración del sistema busca "entorno" y selecciona "Editar las variables de entorno del sistema". Selecciona "Variables de entorno..." en la hoja de propiedades. En el cuadro "Variables de usuario" selecciona Path con doble click. Al final de la lista añade las entradas `C:\msys64\ucrt64\bin` y `C:\msys64\usr\bin` en ese orden.
