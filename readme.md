@@ -185,4 +185,4 @@ Una vez instaladas las herramientas hay que modificar las rutas de acceso por de
 
 ## Agregados de Visual Studio Code
 
-Se recomienda utilizar como editor de texto Visual Studio Code. En Visual Studio Code instalar el agregado "VHDL LS", que encontrarás buscando `hbohlin.vhdl-ls` en la pestaña de agregados, que da soporte para el lenguaje VHDL. Además recomendamos "SVG Previewer", que encontrarás buscando `vitaliymaz.vscode-svg-previewer` en la solapa de extensiones, para visualizar los esquemáticos producidos en formato SVG.
+Se recomienda utilizar como editor de texto Visual Studio Code. En Visual Studio Code instalar el agregado "VHDL", que encontrarás buscando `puorc.awesome-vhdl` en la pestaña de agregados, que da soporte para el lenguaje VHDL. Además recomendamos "SVG Previewer", que encontrarás buscando `vitaliymaz.vscode-svg-previewer` en la solapa de extensiones, para visualizar los esquemáticos producidos en formato SVG.
