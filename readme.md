@@ -22,6 +22,25 @@ Electrónica II para Ing. Electrónica. 2024
   - Función *XOR* de dos entradas de $32\text{ b}$. Las entradas y la salida son señales de $32\text{ b}$. Cada bit de la salida es el o exclusivo de los bits correspondientes de las entradas.
   - Función *SUMA/RESTA* de dos entradas de $32\text{ b}$. Incluye una entrada de selección, $0$ para suma y $1$ para resta, dos entradas de $32\text{ b}$ y una salida de $32\text{ b}$. La salida es la suma o resta de las entradas según la entrada de selección.
   - Función *MENOR QUE* de $32\text{ b}$ para valores en binario natural y con signo complemento a dos. Incluye una entrada de selección, $0$ con signo y $1$ sin signo, dos entradas, $A$ y $B$, de $32\text{ b}$ y una salida de un bit. La salida es $1$ si la entrada $A$ es menor que la entrada $B$ y $0$ caso contrario. La comparación se realiza considerando valores en binario natural o en complemento a dos según indique la entrada de selección.
+- A partir de los componentes desarrollados en el punto anterior, diseña, describe a nivel estructural y evalúa mediante simulación una unidad aritmética-lógica de $32\text{ b}$ con dos entradas de operando, una entrada de selección, una salida de resultado y una salida de cero, con las funciones dadas por la Tabla 1.
+- Diseña, describe a nivel comportamental y evalúa mediante simulación un registro de $32\text{ b}$ con habilitación de escritura.
+
+Tabla 1: Funciones de la ALU.
+
+| *Sel* | *Y* | *Z* |
+|:-----:|:---|:---:|
+|`0000` | $A+B$ | $Y=0$ |
+|`0001` | $A-B$ | $Y=0$ |
+|`001-` | $A << B$ | $Y=0$ |
+|`010-` | $A<B\quad$ Complemento a 2 | $Y=0$ |
+|`011-` | $A<B\quad$ Binario natural | $Y=0$ |
+|`1010` | $A >> B\,$ Binario natural | $Y=0$ |
+|`1011` | $A >> B\,$ Complemento a 2 | $Y=0$ |
+|`100-` | $A \oplus B$ | $Y=0$ |
+|`110-` | $A \vee B$ | $Y=0$ |
+|`111-` | $A \wedge B$ | $Y=0$ |
+
+*Notas*:  *Sel* es la entrada de selección, de 4 bit. *A* y *B* son los operandos, de 32 bit. *Y* es el resultado, de 32 bit y *Z* es la salida de cero, de un bit. Los operadores '$<<$' y '$>>$' denotan desplazamiento a la izquierda y desplazamiento a la derecha respectivamente. Los operadores '$=$' y '$<$' denotan las operaciones relacionales *igual a* y *menor que*, que evalúan a $1$ si se cumple la condición y $0$ en caso contrario.
 
 ## Entregables
 
