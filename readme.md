@@ -124,6 +124,16 @@ end sim;
 
 Listado 2: Archivo `src/sim_and_2.vhd`, con el banco de prueba para la entidad `and_2`
 
+## Ayuda para crear nuevos módulos
+
+Al ser VHDL un lenguaje tan verborrágico y repetitivo, se vuelve engorroso rápidamente el realizar un gran número de módulos con sus respectivos bancos de prueba para simulación siguiendo las conveciones de nombres correctas. Como una ayuda para aliviar el trabajo repetitivo se incluyó en el guión de make una ayuda para generar nuevos archivos. Para ello utilizar el comando
+
+~~~shell
+make nuevo_<entidad>
+~~~
+
+donde &lt;entidad&gt; es el nombre de una entidad nueva. Este comando creará los archivos `src/<entidad>.vhd` y `src/sim_<entidad>.vhd`, conteniendo ejemplos de componente y banco de prueba respectivamente. Luego reemplazar los ejemplos por el diseño y banco de pruebas reales.
+
 ## Ejecución de las simulaciones
 
 Para ejecutar todas las simulaciones abrrir una teminal en el directorio del proyecto y ejecutar el comando `make`. Los resultados estarán disponibles en el subdirectorio `resultados`. Por ejemplo, las formas de onda creadas al ejecutar la simulación `sim_and_2` estarán en el archivo `resultados/and_2.ghw` (sin el prefijo sim_). Para ver las formas de onda utilizar el comando `gtkwave -f <archivo.ghw>` por ejemplo para ver el resultado de la simulación `sim_and_2` utilizar el comando `gtkwave -f resultados/and_2.ghw`. Ademas de ejecutar las simulaciones make genera un diagrama esquemático en formato de imagen vectorial `.svg`, también en la carpeta resultados. En el caso del componete `and_2` genera el archivo `resultados/and_2.svg`. Los archivos `.svg` pueden abrirse con un navegador. Puedes también previsualizarlo en visual studio code instalando alguna extensión. Recomendamos la extensión "SVG Previewer", que puedes ubicar buscando `vitaliymaz.vscode-svg-previewer` en la solapa de extensiónes.

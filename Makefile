@@ -43,3 +43,66 @@ $(1): $(arch_cf)
 endef
 
 $(foreach blanco,$(blancos),$(eval $(call plantilla,$(blanco),$(prefijo)_$(blanco))))
+
+define plantilla_nuevo_sim =
+library IEEE;
+use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
+use std.env.finish;
+
+entity sim_$(1) is
+end sim_$(1);
+
+architecture sim of sim_$(1) is
+  component $(1) is
+    port (
+      A : in  std_logic;
+      B : in  std_logic;
+      Y : out std_logic
+    );
+  end component; -- $(1)
+  signal AB : std_logic_vector (1 downto 0);
+  signal Y : std_logic;
+begin
+  -- Dispositivo bajo prueba
+  dut : $(1) port map (A=>AB(1),B=>AB(0),Y=>Y);
+
+  excitaciones: process
+  begin
+    for i in 0 to 3 loop
+      AB <= std_logic_vector(to_unsigned(i,2));
+      wait for 1 ns;
+    end loop;
+    wait for 1 ns; -- Espera extra antes de salir
+    finish;
+  end process; -- excitaciones
+end sim;
+endef
+
+define plantilla_nuevo_ent = 
+library IEEE;
+use IEEE.std_logic_1164.all;
+
+entity $(1) is
+  port (
+    A : in  std_logic;
+    B : in  std_logic;
+    Y : out std_logic
+  );
+end $(1);
+
+architecture arch of $(1) is
+begin
+  Y <= A and B;
+end arch;
+endef
+
+
+nuevoent = $(patsubst nuevo_%,%,$@)
+narchent = $(addsuffix .vhd,$(addprefix $(fuentes)/,$(nuevoent)))
+narchsim = $(addsuffix .vhd,$(addprefix $(fuentes)/sim_,$(nuevoent)))
+preexistente = $(nuevoent) preexistente, omitido
+creado       = $(nuevoent) creado con ejemplo $(file >$(narchent),$(call plantilla_nuevo_ent,$(nuevoent)))$(file >$(narchsim),$(call plantilla_nuevo_sim,$(nuevoent)))
+
+nuevo_%:
+	echo $(if $(wildcard $(narchent) $(narchsim)),$(preexistente),$(creado))
