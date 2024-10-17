@@ -2,6 +2,8 @@ prefijo        ?= sim
 dir_fuentes    ?= src
 dir_resultados ?= resultados
 dir_trabajo    ?= build
+diagrama    ?= si
+adicional_prep ?= ;
 
 fuentes    := $(abspath $(dir_fuentes))
 resultados := $(abspath $(dir_resultados))
@@ -38,8 +40,10 @@ define plantilla =
 $(1): $(arch_cf)
 	cd $(trabajo) && ghdl -m $(ops) $(2)
 	cd $(trabajo) && ghdl -r $(ops) $(2) --wave=$(resultados)/$(1).ghw
-	cd $(trabajo) && yosys -p "ghdl $(ops) $(1); prep -top $(1); write_json -compat-int $(1).json"
+ifeq ($(diagrama),si)
+	cd $(trabajo) && yosys -p "ghdl $(ops) $(1); prep -top $(1) $(adicional_prep) write_json -compat-int $(1).json"
 	cd $(trabajo) && netlistsvg.cmd $(1).json -o $(resultados)/$(1).svg
+endif
 endef
 
 $(foreach blanco,$(blancos),$(eval $(call plantilla,$(blanco),$(prefijo)_$(blanco))))
