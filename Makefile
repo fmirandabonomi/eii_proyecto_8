@@ -70,16 +70,16 @@ architecture sim of sim_$(1) is
       Y : out std_logic
     );
   end component; -- $(1)
-  signal AB : std_logic_vector (1 downto 0);
-  signal Y : std_logic;
+  signal entradas : std_logic_vector (1 downto 0);
+  signal salida : std_logic;
 begin
   -- Dispositivo bajo prueba
-  dut : $(1) port map (A=>AB(1),B=>AB(0),Y=>Y);
+  dut : $(1) port map (A=>entradas(1),B=>entradas(0),Y=>salida);
 
   excitaciones: process
   begin
-    for i in 0 to 3 loop
-      AB <= std_logic_vector(to_unsigned(i,2));
+    for i in 0 to (2**entradas'length)-1 loop
+      entradas <= std_logic_vector(to_unsigned(i,entradas'length));
       wait for 1 ns;
     end loop;
     wait for 1 ns; -- Espera extra antes de salir
