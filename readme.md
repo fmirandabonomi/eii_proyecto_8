@@ -22,6 +22,8 @@ Electrónica II para Ing. Electrónica. 2024
   - Función *XOR* de dos entradas de 32 bit. Las entradas y la salida son señales de 32 bit. Cada bit de la salida es el o exclusivo de los bits correspondientes de las entradas.
   - Función *SUMA/RESTA* de dos entradas de 32 bit. Incluye una entrada de selección, $0$ para suma y $1$ para resta, dos entradas de 32 bit y una salida de 32 bit. La salida es la suma o resta de las entradas según la entrada de selección.
   - Función *MENOR QUE* de 32 bit para valores en binario natural y con signo complemento a dos. Incluye una entrada de selección, $0$ con signo y $1$ sin signo, dos entradas, $A$ y $B$, de 32 bit y una salida de un bit. La salida es $1$ si la entrada $A$ es menor que la entrada $B$ y $0$ caso contrario. La comparación se realiza considerando valores en binario natural o en complemento a dos según indique la entrada de selección.
+  - Función *desplazamiento a la izquierda* de un valor de 32 bit por la cantidad de bits indicada por un valor de 5 bit. Ingresa ceros por la derecha.
+  - Función *desplazamiento a la derecha* de un valor de 32 bit por la cantidad de bits indicada por un valor de 5 bit. Cuenta con un selector de modo *con signo*. En modo sin signo ingresa ceros por la izquierda, en modo con signo copia el bit de signo (extensión de signo).
 - A partir de los componentes desarrollados en el punto anterior, diseña, describe a nivel estructural y evalúa mediante simulación una unidad aritmética-lógica de 32 bit con dos entradas de operando, una entrada de selección, una salida de resultado y una salida de cero, con las funciones dadas por la Tabla 1.
 - Diseña, describe a nivel comportamental y evalúa mediante simulación un registro de 32 bit con habilitación de escritura.
 
