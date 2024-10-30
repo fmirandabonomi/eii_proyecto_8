@@ -1,2 +1,4 @@
-build/*.*
-resultados/*.*
+build
+resultados
+icecube/*log*
+icecube/icecube_Implmnt
