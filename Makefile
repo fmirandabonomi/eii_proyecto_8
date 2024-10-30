@@ -45,7 +45,7 @@ $(1): $(arch_cf)
 ifeq ($(diagrama),si)
 ifneq ($(netlistsvg),)
 	cd $(trabajo) && ghdl --synth $(ops) --out=verilog $(1) > $(1).v
-	cd $(trabajo) && yosys -p "prep -top $(1) $(adicional_prep) write_json -compat-int $(1).json" $(1).v
+	cd $(trabajo) && yosys -q -p "prep -top $(1) $(adicional_prep) write_json -compat-int $(1).json" $(1).v
 	cd $(trabajo) && $(netlistsvg) $(1).json -o $(resultados)/$(1).svg
 endif
 endif
